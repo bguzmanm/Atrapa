@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Moneda
   - Obstaculo
+  - Piso
+  - Enemigo
+  - Meta
   layers:
   - Default
   - TransparentFX
@@ -40,8 +43,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo
+    uniqueID: 1001
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objetos
+    uniqueID: 1002
+    locked: 0
+  - name: Personajes
+    uniqueID: 1003
     locked: 0
   m_RenderingLayers:
   - Default
