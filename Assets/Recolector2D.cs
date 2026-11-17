@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 // Clase 10 — El Recolector de la clase 7/8 con tres letras nuevas:
@@ -83,6 +84,12 @@ public class Recolector2D : MonoBehaviour
 
         if (movimiento != null)
             movimiento.ReiniciarEstadoPiso();
+    }
+
+    public void Reintentar()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void ActualizarTexto()
