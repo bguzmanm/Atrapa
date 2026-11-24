@@ -1,15 +1,12 @@
 using UnityEngine;
 
-// Clase 10 — Movimiento con Rigidbody2D y salto con candado "enElPiso".
-// Es el mismo movimiento de la clase 7, pero la física manda: no se usa
-// transform.Translate porque el salto necesita velocidad y gravedad.
-// Clase 11 — El candado cuenta contactos para no fallar con varios colliders.
+// Clase 10 — Movimiento horizontal con Rigidbody2D. La física manda: no se usa
+// transform.Translate. Clase 11 — el candado cuenta contactos con el piso.
+// Clase 13 — el salto (ESPACIO) lo hace Salto2D; aquí solo se conserva la Y
+// para que la gravedad y el salto no se peleen con el movimiento en X.
 public class MovimientoJugador2D : MonoBehaviour
 {
     public float velocidad = 6f;
-    // 8 daba 1.09 m de altura y el enemigo ocupa ~0.72 m de collider:
-    // el margen era casi nulo. 10 da ~1.70 m y deja pasar con holgura.
-    public float fuerzaSalto = 10f;
 
     public Animator anim;
     public SpriteRenderer sprite;
@@ -43,12 +40,6 @@ public class MovimientoJugador2D : MonoBehaviour
 
         if (sprite != null)
             sprite.flipX = horizontal < 0;
-
-        // Dos condiciones con &&: hay que apretar salto Y estar en el piso.
-        if (Input.GetKeyDown(KeyCode.Space) && enElPiso)
-        {
-            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, fuerzaSalto);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D colision)

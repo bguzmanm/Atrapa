@@ -249,7 +249,10 @@ public static class ConfigurarNivel2D
             srJugador.sortingOrder = 10;
 
             var rb = jugadorGO.AddComponent<Rigidbody2D>();
+            // Simulation Mode = Fixed es el valor por defecto del Rigidbody2D.
             rb.gravityScale = 3f;
+            rb.linearDamping = 0.1f;
+            rb.angularDamping = 0f;
             rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             rb.interpolation = RigidbodyInterpolation2D.Interpolate;
@@ -264,11 +267,11 @@ public static class ConfigurarNivel2D
 
             var movimiento = jugadorGO.AddComponent<MovimientoJugador2D>();
             movimiento.velocidad = 6f;
-            // Con 8 el salto llegaba a 1.09 m y el enemigo ocupaba ~0.9 m:
-            // no había margen. Con 10 llega a ~1.70 m y se pasa con holgura.
-            movimiento.fuerzaSalto = 10f;
             movimiento.anim = animador;
             movimiento.sprite = srJugador;
+
+            // Clase 13 — ESPACIO empuja hacia arriba desde su propio script.
+            jugadorGO.AddComponent<Salto2D>();
 
             var recolector = jugadorGO.AddComponent<Recolector2D>();
             recolector.valorMoneda = 10;
